@@ -1,0 +1,74 @@
+Your PATH environment variable includes the directory where Python and its scripts are installed, which is good. This suggests that `virtualenv` should be accessible if it’s installed. However, since it’s not recognized, let’s troubleshoot further:
+
+### Steps to Resolve
+
+1. **Verify `virtualenv` Installation:**
+
+   Open PowerShell and run:
+
+   ```powershell
+   pip list
+   ```
+
+   Look for `virtualenv` in the list. If it’s not listed, install it with:
+
+   ```powershell
+   pip install virtualenv
+   ```
+
+2. **Check for Installation Issues:**
+
+   If `virtualenv` is installed but still not recognized, there might be an issue with your Python environment or how `pip` is managing packages. Try reinstalling `virtualenv`:
+
+   ```powershell
+   pip uninstall virtualenv
+   pip install virtualenv
+   ```
+
+3. **Check Python Executable:**
+
+   Ensure that `pip` is installing packages to the correct Python installation. You can check the path to your Python executable by running:
+
+   ```powershell
+   where python
+   ```
+
+   Make sure it matches the Python path in your PATH variable.
+
+4. **Check for Script Directory:**
+
+   Verify that the Scripts directory where `virtualenv` would be installed is included in your PATH. In your case, it should be `C:\Users\swapn\AppData\Local\Programs\Python\Python312\Scripts\`.
+
+   To ensure this directory is properly included, you can explicitly add it to your PATH temporarily in PowerShell:
+
+   ```powershell
+   $env:PATH += ";C:\Users\swapn\AppData\Local\Programs\Python\Python312\Scripts\"
+   ```
+
+   Then try running `virtualenv` again:
+
+   ```powershell
+   virtualenv --version
+   ```
+
+5. **Use Python's `venv` Instead:**
+
+   As an alternative, you can use Python’s built-in `venv` module to create virtual environments:
+
+   ```powershell
+   python -m venv myenv
+   ```
+
+   Activate the virtual environment:
+
+   ```powershell
+   .\myenv\Scripts\Activate
+   ```
+
+   This approach does not require `virtualenv` and is suitable for most cases.
+
+6. **Restart PowerShell:**
+
+   Sometimes, changes to the PATH environment variable require restarting the PowerShell window to take effect. Close and reopen PowerShell, and then check if `virtualenv` is recognized.
+
+If you still have trouble or if `virtualenv` is crucial for your workflow, let me know, and we can dive deeper into potential issues!
