@@ -1,10 +1,15 @@
 from flask import Flask
 
-app = Flask(_name_)
+from csd.route import csd_bp
 
-@app.route('/')
-def home():
-    return 'Hello, World!'
+app = Flask(__name__)
 
-if _name_ == '_main_':
-    app.run(debug=True)
+# @app.route('/')
+# def home():
+#     return 'Hello, World!'
+
+with app.app_context():
+    app.register_blueprint(csd_bp)
+
+if __name__ == '__main__':
+    app.run(debug=True,port=5000)
